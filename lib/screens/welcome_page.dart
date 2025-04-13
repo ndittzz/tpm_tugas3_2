@@ -31,7 +31,7 @@ class WelcomePage extends StatelessWidget {
                   'assets/logos/logo-hijau.png',
                   width: 200,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 0),
 
                 // Teks Judul
                 const Text(
@@ -50,7 +50,7 @@ class WelcomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
 
                 // Teks Sambutan
                 const Padding(
@@ -59,12 +59,14 @@ class WelcomePage extends StatelessWidget {
                     "Setiap angka punya arti, mari kita hitung bersama",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
                       color: Colors.white70,
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 40),
 
                 // Tombol Mulai
                 ElevatedButton(
