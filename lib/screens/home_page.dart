@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas3_tpm/screens/favorite_page.dart';
 import 'package:tugas3_tpm/screens/jenis_bilangan_page.dart';
 import 'package:tugas3_tpm/screens/situs_rekomendasi_page.dart';
 import 'package:tugas3_tpm/screens/welcome_page.dart';
@@ -157,7 +158,13 @@ class MainMenuPage extends StatelessWidget {
                   MenuButton(
                     icon: Icons.favorite,
                     title: 'Favorite',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FavoritePage()),
+                      );
+                    },
                   ),
                 ],
               ),
