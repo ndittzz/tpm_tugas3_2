@@ -12,18 +12,28 @@ class MyApp extends StatelessWidget {
 
   Future<Widget> _getInitialPage() async {
     bool isLoggedIn = await SessionManager.isLoggedIn();
-    return isLoggedIn ? HomePage() : WelcomePage();
+    return isLoggedIn ? const HomePage() : const WelcomePage();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Aplikasi Kelompok',
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      debugShowCheckedModeBanner: false,
       home: FutureBuilder<Widget>(
         future: _getInitialPage(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
+            );
+          } else if (snapshot.hasError) {
+            return Scaffold(
+              body: Center(child: Text('Terjadi kesalahan: ${snapshot.error}')),
             );
           } else {
             return snapshot.data!;

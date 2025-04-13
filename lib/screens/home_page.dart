@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tugas3_tpm/screens/jenis_bilangan_page.dart';
+import 'package:tugas3_tpm/screens/situs_rekomendasi_page.dart';
 import 'package:tugas3_tpm/screens/welcome_page.dart';
 import 'package:tugas3_tpm/screens/stopwatch_page.dart';
 import 'package:tugas3_tpm/screens/konversiwaktu_page.dart';
@@ -117,7 +119,13 @@ class MainMenuPage extends StatelessWidget {
                   MenuButton(
                     icon: Icons.calculate,
                     title: 'Jenis Bilangan',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => JenisBilanganPage()),
+                      );
+                    },
                   ),
                   MenuButton(
                     icon: Icons.location_on,
@@ -137,8 +145,14 @@ class MainMenuPage extends StatelessWidget {
                   ),
                   MenuButton(
                     icon: Icons.web,
-                    title: 'Situs Rekomendasi',
-                    onTap: () {},
+                    title: 'Situs Rekomendasi', 
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SitusRekomendasiPage()),
+                      );
+                    },
                   ),
                   MenuButton(
                     icon: Icons.favorite,

@@ -7,83 +7,91 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity, // Pastikan lebar penuh
-        height: double.infinity, // Pastikan tinggi penuh
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF1D1C4C), // Warna atas
-              Color(0xFFC474E6), // Warna bawah
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF1D1C4C),
+                Color(0xFFC474E6),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
-        ),
-        child: Center(
-          // Menggunakan Center agar isi tetap berada di tengah
-          child: Column(
-            mainAxisSize: MainAxisSize
-                .min, // Menghindari column mengambil semua ruang secara tidak perlu
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Logo Aplikasi
-              Image.asset(
-                'assets/images/hitungku_logo.png',
-                width: 150,
-              ),
-              SizedBox(height: 20),
-
-              // Teks Judul
-              Text(
-                "WELCOME TO OUR APP",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Logo Aplikasi
+                Image.asset(
+                  'assets/images/hitungku_logo.png',
+                  width: 150,
                 ),
-              ),
-              SizedBox(height: 10),
+                const SizedBox(height: 20),
 
-              // Teks Sambutan
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                child: Text(
-                  "Setiap angka punya arti, mari kita hitung bersama",
-                  textAlign: TextAlign.center,
+                // Teks Judul
+                const Text(
+                  "WELCOME TO OUR APP",
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white70,
-                  ),
-                ),
-              ),
-              SizedBox(height: 30),
-
-              // Tombol Mulai
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF5B0583), // Warna tombol
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                ),
-                child: Text(
-                  "LET'S START",
-                  style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 4.0,
+                        color: Colors.black38,
+                        offset: Offset(1.0, 1.0),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+
+                // Teks Sambutan
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  child: Text(
+                    "Setiap angka punya arti, mari kita hitung bersama",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+
+                // Tombol Mulai
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF5B0583),
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  ),
+                  child: const Text(
+                    "LET'S START",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

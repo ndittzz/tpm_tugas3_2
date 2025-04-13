@@ -10,14 +10,14 @@ class StopwatchPage extends StatefulWidget {
 
 class _StopwatchPageState extends State<StopwatchPage> {
   late Timer _timer;
-  int _seconds = 0;
+  int _milliseconds = 0;
   bool _isRunning = false;
 
   void _startStopwatch() {
     if (!_isRunning) {
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
         setState(() {
-          _seconds++;
+          _milliseconds += 100;
         });
       });
       setState(() {
@@ -38,16 +38,20 @@ class _StopwatchPageState extends State<StopwatchPage> {
   void _resetStopwatch() {
     if (_isRunning) _timer.cancel();
     setState(() {
-      _seconds = 0;
+      _milliseconds = 0;
       _isRunning = false;
     });
   }
 
-  String _formatTime(int seconds) {
-    final minutes = (seconds ~/ 60).toString().padLeft(2, '0');
-    final secs = (seconds % 60).toString().padLeft(2, '0');
-    return '$minutes:$secs';
-  }
+  String _formatTime(int milliseconds) {
+  final totalSeconds = milliseconds ~/ 1000;
+  final hours = (totalSeconds ~/ 3600).toString().padLeft(2, '0');
+  final minutes = ((totalSeconds % 3600) ~/ 60).toString().padLeft(2, '0');
+  final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
+  final milli = ((milliseconds % 1000) ~/ 100).toString(); // ambil digit pertama
+  return '$hours:$minutes:$seconds.$milli';
+}
+
 
   @override
   void dispose() {
@@ -112,9 +116,9 @@ class _StopwatchPageState extends State<StopwatchPage> {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  _formatTime(_seconds),
+                  _formatTime(_milliseconds),
                   style: const TextStyle(
-                    fontSize: 60,
+                    fontSize: 48,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1D1C4C),
                   ),
@@ -124,7 +128,8 @@ class _StopwatchPageState extends State<StopwatchPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton.icon(
-                      onPressed: _isRunning ? _pauseStopwatch : _startStopwatch,
+                      onPressed:
+                          _isRunning ? _pauseStopwatch : _startStopwatch,
                       icon: Icon(
                         _isRunning ? Icons.pause : Icons.play_arrow,
                         color: Colors.white,
