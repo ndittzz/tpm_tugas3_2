@@ -23,5 +23,13 @@ flutter:
 
   assets:
     - assets/images/hitungku_logo.png
+    - assets/logos/logo-hijau.png
+    - assets/logos/logo-putih.png
     - assets/images/anggota1.jpg
     - assets/images/anggota2.jpg
+
+fonts:
+  - family: Poppins
+    fonts:
+      - asset: assets/fonts/Poppins-Regular.ttf
+      - asset: assets/fonts/Poppins-Bold.ttf

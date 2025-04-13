@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF1D1C4C), Color(0xFFC474E6)],
+            colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -52,16 +52,16 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 // Logo
                 Container(
-                  width: 100,
-                  height: 100,
+                  width: 200,
+                  height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/hitungku_logo.png'),
+                      image: AssetImage('assets/logos/logo-putih.png'),
                       fit: BoxFit.contain,
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 0),
 
                 // Card untuk form login
                 Container(
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: const Color.fromARGB(255, 82, 194, 60),
                         ),
                       ),
                       SizedBox(height: 20),
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                       ElevatedButton(
                         onPressed: _handleLogin,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF5B0583),
+                          backgroundColor: const Color.fromARGB(255, 176, 80, 221),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),

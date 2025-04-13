@@ -14,8 +14,8 @@ class WelcomePage extends StatelessWidget {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color(0xFF1D1C4C),
-                Color(0xFFC474E6),
+                Color(0xFF57E44B),
+                Color(0xFF57E44B),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -28,8 +28,8 @@ class WelcomePage extends StatelessWidget {
               children: [
                 // Logo Aplikasi
                 Image.asset(
-                  'assets/images/hitungku_logo.png',
-                  width: 150,
+                  'assets/logos/logo-hijau.png',
+                  width: 200,
                 ),
                 const SizedBox(height: 20),
 
@@ -38,6 +38,7 @@ class WelcomePage extends StatelessWidget {
                   "WELCOME TO OUR APP",
                   style: TextStyle(
                     fontSize: 22,
+                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     shadows: [
@@ -74,7 +75,7 @@ class WelcomePage extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5B0583),
+                    backgroundColor: const Color.fromARGB(255, 176, 80, 221),
                     elevation: 4,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
