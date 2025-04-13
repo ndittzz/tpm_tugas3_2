@@ -77,6 +77,8 @@ class MainMenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: double.infinity,
+      width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF1D1C4C), Color(0xFFC474E6)],
@@ -84,97 +86,200 @@ class MainMenuPage extends StatelessWidget {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Padding(
-            padding:
-                EdgeInsets.only(top: 15.0), // agar tidak terlalu nempel di atas
-            child: Text(
-              'PILIH MENU',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+      child: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'PILIH MENU',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: ListView(
-                shrinkWrap: true,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+              const SizedBox(height: 24),
+
+              // 🔲 Tombol Kotak: Stopwatch & Tracking LBS
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MenuButton(
-                    icon: Icons.timer,
+                  _verticalMenuCard(
+                    context,
                     title: 'Stopwatch',
+                    icon: Icons.timer,
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => StopwatchPage()),
-                      );
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => StopwatchPage()));
                     },
                   ),
-                  MenuButton(
-                    icon: Icons.calculate,
-                    title: 'Jenis Bilangan',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => JenisBilanganPage()),
-                      );
-                    },
-                  ),
-                  MenuButton(
-                    icon: Icons.location_on,
+                  _verticalMenuCard(
+                    context,
                     title: 'Tracking LBS',
-                    onTap: () {},
-                  ),
-                  MenuButton(
-                    icon: Icons.access_time,
-                    title: 'Konversi Waktu',
+                    icon: Icons.location_on,
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => KonverterWaktuPage()),
-                      );
-                    },
-                  ),
-                  MenuButton(
-                    icon: Icons.web,
-                    title: 'Situs Rekomendasi', 
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SitusRekomendasiPage()),
-                      );
-                    },
-                  ),
-                  MenuButton(
-                    icon: Icons.favorite,
-                    title: 'Favorite',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FavoritePage()),
-                      );
+                      // TODO: Tambahkan navigasi LBS
                     },
                   ),
                 ],
               ),
-            ),
+
+              const SizedBox(height: 16),
+
+              // 🔳 Tombol Horizontal
+              Row(
+                children: [
+                  Expanded(
+                    child: _menuCard(
+                      context,
+                      title: 'Konversi Waktu',
+                      icon: Icons.access_time,
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => KonverterWaktuPage()));
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _menuCard(
+                      context,
+                      title: 'Jenis Bilangan',
+                      icon: Icons.calculate,
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => JenisBilanganPage()));
+                      },
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 16),
+              _menuCard(
+                context,
+                title: 'Website Rekomendasi',
+                icon: Icons.web,
+                fullWidth: true,
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => SitusRekomendasiPage()));
+                },
+              ),
+              const SizedBox(height: 12),
+              _menuCard(
+                context,
+                title: 'Favorite',
+                icon: Icons.favorite,
+                fullWidth: true,
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => FavoritePage()));
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ✅ Tombol Horizontal (default)
+  Widget _menuCard(BuildContext context,
+      {required String title,
+      required IconData icon,
+      required VoidCallback onTap,
+      bool fullWidth = false}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      width: fullWidth ? double.infinity : null,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.9),
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment:
+                fullWidth ? MainAxisAlignment.center : MainAxisAlignment.start,
+            children: [
+              Icon(icon, color: const Color(0xFF5B0583), size: 28),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  title,
+                  textAlign:
+                      fullWidth ? TextAlign.center : TextAlign.start,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF1D1C4C),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ✅ Tombol Kotak Vertikal (khusus Stopwatch & LBS)
+  Widget _verticalMenuCard(BuildContext context,
+      {required String title,
+      required IconData icon,
+      required VoidCallback onTap}) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.42,
+      height: 130,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.9),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.15),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
           ),
         ],
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: const Color(0xFF5B0583), size: 32),
+            const SizedBox(height: 12),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1D1C4C),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
 
 class MenuButton extends StatelessWidget {
   final String title;
