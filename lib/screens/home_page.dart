@@ -38,20 +38,20 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF1D1C4C),
+        backgroundColor: Color(0xFF14532d),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
         selectedItemColor: Colors.white,
-        backgroundColor: Color(0xFFC474E6),
-        unselectedItemColor: Color(0xFF1D1C4C),
+        backgroundColor: Color(0xFF86efac),
+        unselectedItemColor: Color(0xFF14532d),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -81,7 +81,10 @@ class MainMenuPage extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF1D1C4C), Color(0xFFC474E6)],
+          colors: [
+            Color(0xFF14532d), // hijau tua elegan
+            Color(0xFF86efac), // hijau pastel cerah
+          ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -92,17 +95,24 @@ class MainMenuPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Image.asset(
+    'assets/images/header_menu.jpg',
+    width: double.infinity,      // selebar layar
+  fit: BoxFit.fitWidth,  
+  ),
+
+  const SizedBox(height: 12),
+
               const Text(
                 'PILIH MENU',
                 style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
               const SizedBox(height: 24),
 
-              // 🔲 Tombol Kotak: Stopwatch & Tracking LBS
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -120,15 +130,13 @@ class MainMenuPage extends StatelessWidget {
                     title: 'Tracking LBS',
                     icon: Icons.location_on,
                     onTap: () {
-                      // TODO: Tambahkan navigasi LBS
+                      // Tambahkan navigasi Tracking LBS
                     },
                   ),
                 ],
               ),
-
               const SizedBox(height: 16),
 
-              // 🔳 Tombol Horizontal
               Row(
                 children: [
                   Expanded(
@@ -156,7 +164,6 @@ class MainMenuPage extends StatelessWidget {
                   ),
                 ],
               ),
-
               const SizedBox(height: 16),
               _menuCard(
                 context,
@@ -186,7 +193,7 @@ class MainMenuPage extends StatelessWidget {
     );
   }
 
-  // ✅ Tombol Horizontal (default)
+  // 🔳 Tombol Horizontal
   Widget _menuCard(BuildContext context,
       {required String title,
       required IconData icon,
@@ -215,7 +222,7 @@ class MainMenuPage extends StatelessWidget {
             mainAxisAlignment:
                 fullWidth ? MainAxisAlignment.center : MainAxisAlignment.start,
             children: [
-              Icon(icon, color: const Color(0xFF5B0583), size: 28),
+              Icon(icon, color: Color(0xFF166534), size: 28), // hijau bold
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -225,7 +232,7 @@ class MainMenuPage extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF1D1C4C),
+                    color: Color(0xFF1c1917), // hijau gelap/soft black
                   ),
                 ),
               ),
@@ -236,7 +243,7 @@ class MainMenuPage extends StatelessWidget {
     );
   }
 
-  // ✅ Tombol Kotak Vertikal (khusus Stopwatch & LBS)
+  // 🔲 Tombol Kotak Vertikal
   Widget _verticalMenuCard(BuildContext context,
       {required String title,
       required IconData icon,
@@ -262,14 +269,14 @@ class MainMenuPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: const Color(0xFF5B0583), size: 32),
+            Icon(icon, color: Color(0xFF166534), size: 32),
             const SizedBox(height: 12),
             Text(
               title,
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1D1C4C),
+                color: Color(0xFF1c1917),
               ),
             ),
           ],
@@ -278,6 +285,7 @@ class MainMenuPage extends StatelessWidget {
     );
   }
 }
+
 
 
 
@@ -328,23 +336,24 @@ class MembersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'PROFIL ANGGOTA',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF1D1C4C),
+        backgroundColor: Color(0xFF14532d),
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF1D1C4C),
-              Color(0xFFC474E6),
+              Color(0xFF14532d),
+              Color(0xFF86efac),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -443,23 +452,24 @@ class HelpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'BANTUAN',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF1D1C4C),
+        backgroundColor: Color(0xFF14532d),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF1D1C4C),
-              Color(0xFFC474E6),
+              Color(0xFF14532d),
+              Color(0xFF86efac),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
