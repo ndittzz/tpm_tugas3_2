@@ -14,31 +14,31 @@ class _FavoritePageState extends State<FavoritePage> {
     {
       'title': 'Online Stopwatch',
       'url': 'https://www.online-stopwatch.com',
-      'image': 'assets/images/stopwatch.png',
+      'image': 'assets/images/logo-hijau.jpg',
       'description': 'Stopwatch dan timer gratis online',
     },
     {
       'title': 'Time and Date',
       'url': 'https://www.timeanddate.com',
-      'image': 'assets/images/timeanddate.png',
+      'image': 'assets/images/logo-hijau.jpg',
       'description': 'Konversi waktu, kalender, dan zona waktu',
     },
     {
       'title': 'Desmos',
       'url': 'https://www.desmos.com',
-      'image': 'assets/images/desmos.png',
+      'image': 'assets/images/logo-hijau.jpg',
       'description': 'Kalkulator grafik interaktif',
     },
     {
       'title': 'Math is Fun',
       'url': 'https://www.mathsisfun.com',
-      'image': 'assets/images/mathisfun.png',
+      'image': 'assets/images/logo-hijau.jpg',
       'description': 'Penjelasan konsep matematika dengan visual',
     },
     {
       'title': 'GeoGebra',
       'url': 'https://www.geogebra.org',
-      'image': 'assets/images/geogebra.png',
+      'image': 'assets/images/logo-hijau.jpg',
       'description': 'Alat interaktif untuk grafik & geometri',
     },
   ];
@@ -55,9 +55,8 @@ class _FavoritePageState extends State<FavoritePage> {
     final prefs = await SharedPreferences.getInstance();
     final favUrls = prefs.getStringList('favoriteSites') ?? [];
     setState(() {
-      favoriteSites = allSites
-          .where((site) => favUrls.contains(site['url']))
-          .toList();
+      favoriteSites =
+          allSites.where((site) => favUrls.contains(site['url'])).toList();
     });
   }
 
@@ -72,14 +71,18 @@ class _FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Situs Favorit'),
+        title: const Text('SITUS FAVORIT',
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF1D1C4C),
+        backgroundColor: Colors.teal,
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF1D1C4C), Color(0xFFC474E6)],
+            colors: [Colors.teal, Colors.teal],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),

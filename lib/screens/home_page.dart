@@ -5,6 +5,7 @@ import 'package:tugas3_tpm/screens/situs_rekomendasi_page.dart';
 import 'package:tugas3_tpm/screens/welcome_page.dart';
 import 'package:tugas3_tpm/screens/stopwatch_page.dart';
 import 'package:tugas3_tpm/screens/konversiwaktu_page.dart';
+import 'package:tugas3_tpm/screens/tracking_lbs_page.dart';
 import '../session_manager.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,6 +30,15 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // Future<void> _logout() async {
+  //   await SessionManager.logout();
+  //   Navigator.pushAndRemoveUntil(
+  //     context,
+  //     MaterialPageRoute(builder: (_) => const WelcomePage()),
+  //     (route) => false,
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,15 +53,22 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF14532d),
+        backgroundColor: Colors.teal,
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(Icons.logout),
+        //     onPressed: _logout,
+        //     color: Colors.white,
+        //   ),
+        // ],
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
         selectedItemColor: Colors.white,
-        backgroundColor: Color(0xFF86efac),
-        unselectedItemColor: Color(0xFF14532d),
+        backgroundColor: Colors.teal,
+        unselectedItemColor: Colors.white70,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -82,8 +99,8 @@ class MainMenuPage extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color(0xFF14532d), // hijau tua elegan
-            Color(0xFF86efac), // hijau pastel cerah
+            Colors.teal, // hijau tua elegan
+            Colors.teal, // hijau pastel cerah
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -96,23 +113,19 @@ class MainMenuPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-    'assets/images/header_menu.jpg',
-    width: double.infinity,      // selebar layar
-  fit: BoxFit.fitWidth,  
-  ),
-
-  const SizedBox(height: 12),
-
-              const Text(
-                'PILIH MENU',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                'assets/images/logo-hijau.jpg',
+                width: 400,
               ),
+              const SizedBox(height: 12),
+              // const Text(
+              //   'PILIH MENU',
+              //   style: TextStyle(
+              //     fontSize: 14,
+              //     fontWeight: FontWeight.bold,
+              //     color: Colors.white,
+              //   ),
+              // ),
               const SizedBox(height: 24),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -130,13 +143,13 @@ class MainMenuPage extends StatelessWidget {
                     title: 'Tracking LBS',
                     icon: Icons.location_on,
                     onTap: () {
-                      // Tambahkan navigasi Tracking LBS
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => TrackingPage()));
                     },
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-
               Row(
                 children: [
                   Expanded(
@@ -145,8 +158,10 @@ class MainMenuPage extends StatelessWidget {
                       title: 'Konversi Waktu',
                       icon: Icons.access_time,
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => KonverterWaktuPage()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => KonverterWaktuPage()));
                       },
                     ),
                   ),
@@ -157,8 +172,10 @@ class MainMenuPage extends StatelessWidget {
                       title: 'Jenis Bilangan',
                       icon: Icons.calculate,
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => JenisBilanganPage()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => JenisBilanganPage()));
                       },
                     ),
                   ),
@@ -171,8 +188,10 @@ class MainMenuPage extends StatelessWidget {
                 icon: Icons.web,
                 fullWidth: true,
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => SitusRekomendasiPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => SitusRekomendasiPage()));
                 },
               ),
               const SizedBox(height: 12),
@@ -222,17 +241,16 @@ class MainMenuPage extends StatelessWidget {
             mainAxisAlignment:
                 fullWidth ? MainAxisAlignment.center : MainAxisAlignment.start,
             children: [
-              Icon(icon, color: Color(0xFF166534), size: 28), // hijau bold
+              Icon(icon, color: Colors.teal, size: 28), // hijau bold
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   title,
-                  textAlign:
-                      fullWidth ? TextAlign.center : TextAlign.start,
+                  textAlign: fullWidth ? TextAlign.center : TextAlign.start,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF1c1917), // hijau gelap/soft black
+                    color: Colors.teal, // hijau gelap/soft black
                   ),
                 ),
               ),
@@ -269,7 +287,7 @@ class MainMenuPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: Color(0xFF166534), size: 32),
+            Icon(icon, color: Colors.teal, size: 32),
             const SizedBox(height: 12),
             Text(
               title,
@@ -285,9 +303,6 @@ class MainMenuPage extends StatelessWidget {
     );
   }
 }
-
-
-
 
 class MenuButton extends StatelessWidget {
   final String title;
@@ -346,14 +361,14 @@ class MembersPage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF14532d),
+        backgroundColor: Colors.teal,
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF14532d),
-              Color(0xFF86efac),
+              Colors.teal,
+              Colors.teal,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -422,7 +437,7 @@ class MembersPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF5B0583),
+              color: Colors.black,
             ),
           ),
           SizedBox(height: 5),
@@ -462,14 +477,14 @@ class HelpPage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF14532d),
+        backgroundColor: Colors.teal,
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF14532d),
-              Color(0xFF86efac),
+              Colors.teal,
+              Colors.teal,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

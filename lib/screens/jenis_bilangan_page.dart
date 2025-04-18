@@ -78,7 +78,8 @@ class _JenisBilanganPageState extends State<JenisBilanganPage> {
       if (n > 1 && n <= batasCekPrima && isPrima(n)) {
         temp['Bilangan Prima'] = true;
       } else if (n > batasCekPrima) {
-        tempMsg.add('⚠️ Pengecekan Bilangan Prima diabaikan karena terlalu besar');
+        tempMsg
+            .add('⚠ Pengecekan Bilangan Prima diabaikan karena terlalu besar');
       }
     } else {
       temp['Bilangan Desimal'] = true;
@@ -101,9 +102,8 @@ class _JenisBilanganPageState extends State<JenisBilanganPage> {
   }
 
   Widget _buildMessageBox(String text) {
-    Color color = text.startsWith('❌')
-        ? Colors.red.shade100
-        : Colors.orange.shade100;
+    Color color =
+        text.startsWith('❌') ? Colors.red.shade100 : Colors.orange.shade100;
     Color textColor = text.startsWith('❌') ? Colors.red : Colors.orange;
 
     return Container(
@@ -135,7 +135,8 @@ class _JenisBilanganPageState extends State<JenisBilanganPage> {
         ),
         title: const Text(
           'MENU JENIS BILANGAN',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
       ),
@@ -144,7 +145,7 @@ class _JenisBilanganPageState extends State<JenisBilanganPage> {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF1D1C4C), Color(0xFFC474E6)],
+            colors: [Colors.teal, Colors.teal],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -163,49 +164,56 @@ class _JenisBilanganPageState extends State<JenisBilanganPage> {
                 )
               ],
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'Masukkan Bilangan',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
-                ),
-                const SizedBox(height: 24),
-                TextField(
-                  controller: _controller,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  decoration: const InputDecoration(
-                    labelText: 'Masukkan angka...',
-                    border: OutlineInputBorder(),
+            child: SingleChildScrollView(
+              // Tambahkan SingleChildScrollView di sini
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Masukkan Bilangan',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87),
                   ),
-                  onChanged: (_) => cekJenisBilangan(),
-                ),
-                const SizedBox(height: 16),
+                  const SizedBox(height: 24),
+                  TextField(
+                    controller: _controller,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    decoration: const InputDecoration(
+                      labelText: 'Masukkan angka...',
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (_) => cekJenisBilangan(),
+                  ),
+                  const SizedBox(height: 16),
 
-                // Error/Warning Box
-                ...messages.map((msg) => _buildMessageBox(msg)),
+                  // Error/Warning Box
+                  ...messages.map((msg) => _buildMessageBox(msg)),
 
-                if (hasil.isNotEmpty)
-                  ...kategori.map((jenis) {
-                    final cocok = hasil[jenis] ?? false;
-                    return Card(
-                      margin: const EdgeInsets.symmetric(vertical: 6),
-                      child: ListTile(
-                        leading: Icon(
-                          cocok ? Icons.check_circle : Icons.cancel,
-                          color: cocok ? Colors.green : Colors.red,
-                        ),
-                        title: Text(
-                          jenis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: cocok ? Colors.black87 : Colors.black45,
+                  if (hasil.isNotEmpty)
+                    ...kategori.map((jenis) {
+                      final cocok = hasil[jenis] ?? false;
+                      return Card(
+                        margin: const EdgeInsets.symmetric(vertical: 6),
+                        child: ListTile(
+                          leading: Icon(
+                            cocok ? Icons.check_circle : Icons.cancel,
+                            color: cocok ? Colors.green : Colors.red,
+                          ),
+                          title: Text(
+                            jenis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: cocok ? Colors.black87 : Colors.black45,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-              ],
+                      );
+                    }),
+                ],
+              ),
             ),
           ),
         ),

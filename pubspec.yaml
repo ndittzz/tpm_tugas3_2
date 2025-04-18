@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.0.6
   url_launcher: ^6.1.12
+  google_maps_flutter: ^2.5.0
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:
@@ -21,10 +23,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/hitungku_logo.png
     - assets/logos/logo-hijau.png
     - assets/logos/logo-putih.png
-    - assets/images/header_menu.jpg
+    - assets/images/header_menu.png
+    - assets/images/logo-hijau.png
+    - assets/images/logo-hijau.jpg
     - assets/images/anggota1.jpg
     - assets/images/anggota2.jpg
 

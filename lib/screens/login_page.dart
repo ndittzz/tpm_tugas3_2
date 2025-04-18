@@ -40,7 +40,10 @@ class _LoginPageState extends State<LoginPage> {
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)],
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -86,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 82, 194, 60),
+                          color: Colors.teal,
                         ),
                       ),
                       SizedBox(height: 20),
@@ -139,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                       ElevatedButton(
                         onPressed: _handleLogin,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 176, 80, 221),
+                          backgroundColor: Colors.teal,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),

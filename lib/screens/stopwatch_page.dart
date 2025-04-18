@@ -44,14 +44,14 @@ class _StopwatchPageState extends State<StopwatchPage> {
   }
 
   String _formatTime(int milliseconds) {
-  final totalSeconds = milliseconds ~/ 1000;
-  final hours = (totalSeconds ~/ 3600).toString().padLeft(2, '0');
-  final minutes = ((totalSeconds % 3600) ~/ 60).toString().padLeft(2, '0');
-  final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
-  final milli = ((milliseconds % 1000) ~/ 100).toString(); // ambil digit pertama
-  return '$hours:$minutes:$seconds.$milli';
-}
-
+    final totalSeconds = milliseconds ~/ 1000;
+    final hours = (totalSeconds ~/ 3600).toString().padLeft(2, '0');
+    final minutes = ((totalSeconds % 3600) ~/ 60).toString().padLeft(2, '0');
+    final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
+    final milli =
+        ((milliseconds % 1000) ~/ 100).toString(); // ambil digit pertama
+    return '$hours:$minutes:$seconds.$milli';
+  }
 
   @override
   void dispose() {
@@ -83,7 +83,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF1D1C4C), Color(0xFFC474E6)],
+            colors: [Colors.teal, Colors.teal],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -128,8 +128,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton.icon(
-                      onPressed:
-                          _isRunning ? _pauseStopwatch : _startStopwatch,
+                      onPressed: _isRunning ? _pauseStopwatch : _startStopwatch,
                       icon: Icon(
                         _isRunning ? Icons.pause : Icons.play_arrow,
                         color: Colors.white,

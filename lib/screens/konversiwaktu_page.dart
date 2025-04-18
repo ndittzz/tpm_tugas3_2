@@ -68,7 +68,7 @@ class _KonverterWaktuPageState extends State<KonverterWaktuPage> {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF1D1C4C), Color(0xFFC474E6)],
+            colors: [Colors.teal, Colors.teal],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
