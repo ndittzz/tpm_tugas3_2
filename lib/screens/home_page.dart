@@ -517,7 +517,7 @@ class HelpPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF5B0583),
+                        color: Colors.teal,
                       ),
                     ),
                     SizedBox(height: 10),
